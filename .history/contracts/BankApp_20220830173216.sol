@@ -2,7 +2,6 @@
 pragma solidity 0.8.9;
 
 contract BankApp {
-    string name;
     address public manager;
     struct Account {
         uint id;
@@ -13,6 +12,7 @@ contract BankApp {
     mapping(address => Account) accounts;
 
     constructor(string memory _name) {
+    string name;
         manager = msg.sender;
         name = _name;
     }

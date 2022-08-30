@@ -2,7 +2,6 @@
 pragma solidity 0.8.9;
 
 contract BankApp {
-    string name;
     address public manager;
     struct Account {
         uint id;
@@ -12,18 +11,17 @@ contract BankApp {
     }
     mapping(address => Account) accounts;
 
-    constructor(string memory _name) {
+    constructor() {
         manager = msg.sender;
-        name = _name;
     }
 
     function register(
         uint256 id,
         address user,
-        string memory _name,
+        string memory name,
         string memory kraPin,
         uint256 balance
-    ) public returns (bool) {
+    ) public  {
         require(msg.sender == manager, "Sender not manager");
         Account memory account = accounts[user];
 
@@ -32,10 +30,9 @@ contract BankApp {
         }
 
         account.id = id;
-        account.name = _name;
+        account.name = name;
         account.kraPin = kraPin;
         account.balance = balance;
-        accounts[user] = account;
-        return true;
+        account[user] = account;
     }
 }

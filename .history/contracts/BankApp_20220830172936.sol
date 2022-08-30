@@ -27,7 +27,7 @@ contract BankApp {
         require(msg.sender == manager, "Sender not manager");
         Account memory account = accounts[user];
 
-        if (account.id != 0) {
+        if (account.id !== 0) {
             revert("Account already exists");
         }
 
