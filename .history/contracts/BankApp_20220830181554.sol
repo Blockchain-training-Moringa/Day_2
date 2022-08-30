@@ -47,7 +47,7 @@ contract BankApp {
     function login() public view returns (bool) {
         address user = msg.sender;
         Account memory account = accounts[user];
-        require(account.status == false, "User is already logged in");  
+        require(account.status == true, "Invalid id");
         return true;
     }
 }

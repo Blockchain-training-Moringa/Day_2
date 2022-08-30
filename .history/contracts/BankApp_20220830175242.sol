@@ -5,10 +5,10 @@ contract BankApp {
     string name;
     address public manager;
     struct Account {
-        uint256 id;
+        uint id;
         string name;
         string kraPin;
-        uint256 balance;
+        uint balance;
         bool status;
     }
     mapping(address => Account) accounts;
@@ -40,14 +40,8 @@ contract BankApp {
         return true;
     }
 
-    // pure does not read or modify the variables
-    // view has the permission to only read the variables
-    ///if you want a function to modify the variables do not add any keyword to the function
+    function login() public returns(bool) {
 
-    function login() public view returns (bool) {
-        address user = msg.sender;
-        Account memory account = accounts[user];
-        require(account.status == false, "User is already logged in");  
-        return true;
+
     }
 }

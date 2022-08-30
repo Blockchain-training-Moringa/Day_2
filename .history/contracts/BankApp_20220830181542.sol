@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: UNLICENSED
-pragma solidity 0.8.16;
+pragma solidity 0.8.9;
 
 contract BankApp {
     string name;
@@ -47,7 +47,7 @@ contract BankApp {
     function login() public view returns (bool) {
         address user = msg.sender;
         Account memory account = accounts[user];
-        require(account.status == false, "User is already logged in");  
+        require(account.status == true, "Invalid id");
         return true;
     }
 }
