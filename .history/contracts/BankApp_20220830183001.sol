@@ -44,20 +44,17 @@ contract BankApp {
     // view has the permission to only read the variables
     ///if you want a function to modify the variables do not add any keyword to the function
 
-    function login() public returns (bool) {
+    function login() public view returns (bool) {
         address user = msg.sender;
         Account memory account = accounts[user];
 
         // CHECK IF USER EXISTS
 
-        if (account.id == 0) {
+        if (account.id != 0) {
             revert("Account does not exist");
         }
         if (account.status) {
             return true;
         }
-        // change account status to true
-        return account.status = true;
-
     }
 }
