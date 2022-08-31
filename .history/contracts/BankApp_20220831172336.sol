@@ -103,15 +103,15 @@ contract BankApp {
         require(login(_user), "User not logged in");
 
         account.balance += amount;
-        console.log("Deposit runs ...");
+        console.log("Deposit runs ... Account balance:", account.balance);
         return true;
     }
 
-    function checkBalance(_user) public returns (uint256) {
+    function checkBalance() public returns(uint){
+        address _user = msg.sender;
         Account storage account = accounts[_user];
 
         require(login(_user), "User not logged in");
-        
         return account.balance;
     }
 

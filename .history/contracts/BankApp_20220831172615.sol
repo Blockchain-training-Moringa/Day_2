@@ -111,7 +111,6 @@ contract BankApp {
         Account storage account = accounts[_user];
 
         require(login(_user), "User not logged in");
-        
         return account.balance;
     }
 
