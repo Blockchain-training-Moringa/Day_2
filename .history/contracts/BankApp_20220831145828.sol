@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: UNLICENSED
-pragma solidity 0.8.4;
+pragma solidity 0.8.9;
 
 contract BankApp {
     string name;
@@ -44,38 +44,9 @@ contract BankApp {
     // view has the permission to only read the variables
     ///if you want a function to modify the variables do not add any keyword to the function
 
-    // function login() public returns (bool) {
-    //     address _user = msg.sender;
-    //     Account memory account = accounts[_user];
-
-    // // memory and storage are ways to store,...
-    // // storage is a way to store data directly in the blockchain
-    // // memory is a way to store data in the stack
-
-    //     // CHECK IF USER EXISTS
-
-    //     if (account.id == 0) {
-    //         revert("Account does not exist");
-    //     }
-    //     if (account.status) {
-    //         return true;
-    //     }else{
-    //         revert("Account is not active");
-    //     }
-    //     // change account status to true
-    //     account.status = true;
-
-    //     // make the change permanent
-    //     return accounts[_user] = account;
-
-    // }
     function login() public returns (bool) {
-        address _user = msg.sender;
-        Account storage account = accounts[_user];
-
-        // memory and storage are ways to store,...
-        // storage is a way to store data directly in the blockchain
-        // memory is a way to store data in the stack
+        address user = msg.sender;
+        Account memory account = accounts[user];
 
         // CHECK IF USER EXISTS
 
@@ -84,15 +55,12 @@ contract BankApp {
         }
         if (account.status) {
             return true;
-        } else {
-            revert("Account is not active");
         }
         // change account status to true
-        // make the change permanent
         return account.status = true;
-    }
 
-    function logout() public returns (bool) {
+    }
+    function logout() public returns(bool){
         address user = msg.sender;
         Account memory account = accounts[user];
 
