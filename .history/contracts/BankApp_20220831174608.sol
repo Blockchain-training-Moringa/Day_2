@@ -114,7 +114,7 @@ contract BankApp {
         return true;
     }
 
-    function checkBalance(address _user) public view isLoggedIn(address _user) returns (uint256) {
+    function checkBalance(address _user) public isLoggedIn(msg.sender) returns (uint256) {
         Account storage account = accounts[_user];
 
         console.log("Balance is: ", account.balance);

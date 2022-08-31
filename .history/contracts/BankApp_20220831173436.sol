@@ -15,15 +15,6 @@ contract BankApp {
     }
     mapping(address => Account) accounts;
 
-    modifier isLoggedIn(address _user) {
-        Account memory account = accounts[_user];
-
-        if (!account.status) {
-           revert("Not logged in");
-        }
-        _;
-    }
-
     constructor(string memory _name) {
         manager = msg.sender;
         name = _name;
@@ -82,7 +73,8 @@ contract BankApp {
 
     // }
 
-    //Making a copy is better as it uses less gas fees
+
+//Making a copy is better as it uses less gas fees
     // That is the same with
     function login() public returns (bool) {
         address _user = msg.sender;
@@ -106,22 +98,27 @@ contract BankApp {
         account.status = true;
     }
 
-    function deposit(uint256 _amount) public isLoggedIn(msg.sender) returns(bool) {
+    function deposit(uint256 amount) public returns (bool) {
         address _user = msg.sender;
         Account storage account = accounts[_user];
-        account.balance += _amount;
+
+        require(login(), "User not logged in");
+
+        account.balance += amount;
         console.log("Deposit runs ...");
         return true;
     }
 
-    function checkBalance(address _user) public view isLoggedIn(address _user) returns (uint256) {
+    function checkBalance(address _user) public returns (uint256) {
         Account storage account = accounts[_user];
 
+        require(login(), "User not logged in");
+        
         console.log("Balance is: ", account.balance);
         return account.balance;
     }
 
-    function logout() public view isLoggedIn(msg.sender) returns (bool) {
+    function logout() public view returns (bool) {
         address user = msg.sender;
         Account memory account = accounts[user];
 

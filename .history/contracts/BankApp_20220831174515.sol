@@ -106,22 +106,22 @@ contract BankApp {
         account.status = true;
     }
 
-    function deposit(uint256 _amount) public isLoggedIn(msg.sender) returns(bool) {
+    function deposit(uint256 amount) public isLoggedIn(msg.sender) returns(bool) {
         address _user = msg.sender;
         Account storage account = accounts[_user];
-        account.balance += _amount;
+        account.balance += amount;
         console.log("Deposit runs ...");
         return true;
     }
 
-    function checkBalance(address _user) public view isLoggedIn(address _user) returns (uint256) {
+    function checkBalance(address _user) public returns (uint256) {
         Account storage account = accounts[_user];
 
         console.log("Balance is: ", account.balance);
         return account.balance;
     }
 
-    function logout() public view isLoggedIn(msg.sender) returns (bool) {
+    function logout() public view returns (bool) {
         address user = msg.sender;
         Account memory account = accounts[user];
 
