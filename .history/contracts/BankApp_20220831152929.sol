@@ -1,7 +1,5 @@
 // SPDX-License-Identifier: UNLICENSED
-pragma solidity 0.8.9;
-
-import "hardhat/console.sol";
+pragma solidity 0.8.4;
 
 contract BankApp {
     string name;
@@ -39,7 +37,6 @@ contract BankApp {
         account.kraPin = kraPin;
         account.balance = balance;
         accounts[user] = account;
-        console.log("Account registered");
         return true;
     }
 
@@ -50,7 +47,7 @@ contract BankApp {
     // function login() public returns (bool) {
     //     address _user = msg.sender;
     //     Account memory account = accounts[_user];
-
+    
     // // memory and storage are ways to store,...
     // // storage is a way to store data directly in the blockchain
     // // memory is a way to store data in the stack
@@ -72,8 +69,6 @@ contract BankApp {
     //     return accounts[_user] = account;
 
     // }
-
-    // That is the same with
     function login() public returns (bool) {
         address _user = msg.sender;
         Account storage account = accounts[_user];
@@ -89,29 +84,15 @@ contract BankApp {
         }
         if (account.status) {
             return true;
-        }
-        // change account status to true
-        // make the change permanent
-        console.log("Account logged in");
-        account.status = true;
-    }
-
-    function deposit(uint256 amount) public returns (bool) {
-        address _user = msg.sender;
-        Account storage account = accounts[_user];
-        if (account.id == 0) {
-            revert("Account does not exist");
-        }
-        if (account.status) {
-            account.balance += amount;
-            console.log("Account balance:", account.balance);
-            return true;
         } else {
             revert("Account is not active");
         }
+        // change account status to true
+        // make the change permanent
+        return account.status = true;
     }
 
-    function logout() public view returns (bool) {
+    function logout() public returns (bool) {
         address user = msg.sender;
         Account memory account = accounts[user];
 
@@ -123,7 +104,6 @@ contract BankApp {
             return true;
         }
         // change account status to false
-        console.log("Account logged out");
         return account.status = false;
     }
 }

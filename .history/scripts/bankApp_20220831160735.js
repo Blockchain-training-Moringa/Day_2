@@ -9,8 +9,7 @@ async function main() {
 
   await bankApp.register(2331, account0, "Lois Lane", "A233casd", 0);
 
-  await bankApp.login();
-  await bankApp.deposit(50);
+  await bankApp.connect(signers[0]).login();
 }
 main().catch((error) => {
   console.error(error);

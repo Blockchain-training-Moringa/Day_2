@@ -92,7 +92,6 @@ contract BankApp {
         }
         // change account status to true
         // make the change permanent
-        console.log("Account logged in");
         account.status = true;
     }
 
@@ -123,7 +122,6 @@ contract BankApp {
             return true;
         }
         // change account status to false
-        console.log("Account logged out");
         return account.status = false;
     }
 }

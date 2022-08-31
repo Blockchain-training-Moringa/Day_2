@@ -1,8 +1,6 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity 0.8.9;
 
-import "hardhat/console.sol";
-
 contract BankApp {
     string name;
     address public manager;
@@ -39,7 +37,6 @@ contract BankApp {
         account.kraPin = kraPin;
         account.balance = balance;
         accounts[user] = account;
-        console.log("Account registered");
         return true;
     }
 
@@ -89,26 +86,11 @@ contract BankApp {
         }
         if (account.status) {
             return true;
-        }
+        } 
         // change account status to true
         // make the change permanent
-        console.log("Account logged in");
-        account.status = true;
-    }
-
-    function deposit(uint256 amount) public returns (bool) {
-        address _user = msg.sender;
-        Account storage account = accounts[_user];
-        if (account.id == 0) {
-            revert("Account does not exist");
-        }
-        if (account.status) {
-            account.balance += amount;
-            console.log("Account balance:", account.balance);
-            return true;
-        } else {
-            revert("Account is not active");
-        }
+         account.status = true;
+         return 
     }
 
     function logout() public view returns (bool) {
@@ -123,7 +105,6 @@ contract BankApp {
             return true;
         }
         // change account status to false
-        console.log("Account logged out");
         return account.status = false;
     }
 }

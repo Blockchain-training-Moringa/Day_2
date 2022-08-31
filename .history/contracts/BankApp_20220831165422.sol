@@ -123,7 +123,6 @@ contract BankApp {
             return true;
         }
         // change account status to false
-        console.log("Account logged out");
         return account.status = false;
     }
 }
