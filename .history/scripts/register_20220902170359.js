@@ -3,8 +3,7 @@ const bankAppAbi = require("./abi/BankAppAbi");
 
 async function main() {
   const signers = await hre.ethers.getSigners();
-  const contactAddress =
-    "0xc6a46ec6229c3245f35a66e178046172fa611755940a0afbb21af67ff913110a";
+  const contactAddress = "";
   const account0 = signers[0].address;
 
   // metamask wallet
