@@ -5,10 +5,6 @@ import "hardhat/console.sol";
 
 contract BankApp {
     string name;
-     event Register(address creator, uint256 accountId, uint256 timestamp);
-    event Deposit(address sender, uint256 amount, uint256 timestamp);
-    event Transfer(address sender, address receiver, uint256 amount);
-
     address public manager;
     struct Account {
         uint256 id;
